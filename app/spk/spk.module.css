@@ -1,0 +1,181 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    padding: 2rem;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.titleContainer {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -3px;
+    font-size: 38px;
+}
+
+.runningText {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    animation: running 10s linear infinite;
+}
+
+@keyframes running {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.formSection {
+    width: 80vw;
+    border: 1px solid #ddd;
+    padding: 3rem;
+    border-radius: 0;
+    margin-bottom: 4rem;
+}
+
+.formSection>h3 {
+    font-size: 25px;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form>input {
+    padding: 8px 5px;
+    border-bottom: 1px solid black;
+    font-size: 15px;
+}
+
+.form>select {
+    padding: 8px 5px;
+    border: 2px solid black;
+    font-size: 15px;
+}
+
+.button {
+    margin-top: 1rem;
+    padding: 1.1rem 1rem;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+/* --------------------------------------------------------- */
+
+.tableWrapper {
+    width: 73vw;
+    margin: auto;
+    margin-bottom: 3rem;
+}
+
+.tableWrapper>h3 {
+    font-size: 25px;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    border: none;
+}
+
+.table thead th {
+    border: none
+}
+
+.table tbody td {
+    padding: 12px 5px;
+    border-bottom: 0.5px solid rgb(224, 224, 224);
+}
+
+.table th {
+    background: beige;
+    color: black;
+    padding: 12px 5px;
+}
+
+.table button {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.actionButton {
+    background: rgb(255, 104, 104);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    cursor: pointer;
+}
+
+.buttons {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.buttonGreen {
+    background: Black;
+    color: white;
+    padding: 1.1rem 1rem;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 1.1rem 1.32rem;
+    margin-right: 4.6vw;
+}
+
+.buttonGray {
+    background: gray;
+    color: white;
+    padding: 1.1rem 1rem;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------ */
+
+.resultSection {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.resultTable {
+    border-collapse: collapse;
+    width: 60%;
+    margin: 1rem auto;
+}
+
+.resultTable th {
+    background: #f0f0f0;
+}

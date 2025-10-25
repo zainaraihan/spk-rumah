@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import styles from "./spk.module.css";
 
 interface House {
     id: number;
@@ -22,7 +23,6 @@ export default function SPKPage() {
     });
     const [results, setResult] = useState<any[]>([]);
 
-    // Tambah Rumah
     const handleAdd = () => {
         if (!form.nama || !form.harga || !form.luas || !form.jarak) return;
 
@@ -33,7 +33,7 @@ export default function SPKPage() {
             luas: Number(form.luas),
             jarak: Number(form.jarak),
             lingkungan: Number(form.lingkungan),
-        }
+        };
 
         setHouses([...houses, newHouse]);
         setForm({ nama: "", harga: "", luas: "", jarak: "", lingkungan: "3" });
@@ -71,44 +71,32 @@ export default function SPKPage() {
             return n;
         });
 
-        // Hitung nilai preferensi
         const scores = normalized.map((n) => {
             let total = 0;
             criteria.forEach((c) => {
                 total += n[c.key] * c.weight;
             });
             return { nama: n.nama, nilai: total };
-        })
+        });
 
-        // Urutkan dari tertinggi
         scores.sort((a, b) => b.nilai - a.nilai);
         setResult(scores);
     };
 
-    // Reset semua data
     const handleReset = () => {
         setHouses([]);
         setResult([]);
     };
 
     return (
-        <main style={{ padding: "2rem" }}>
-            <h1 style={{ textAlign: "center", marginBottom: "1rem" }}>
-                SPK Pemilihan Rumah (Metode SAW)
-            </h1>
+        <main className={styles.main}>
+            <div className={styles.titleContainer}>
+                <h1 className={`${styles.title} ${styles.runningText}`}>SPK Pemilihan Rumah (Metode SAW)</h1>
+            </div>
 
-            {/* 🧾 Form Input */}
-            <section
-                style={{
-                    margin: "2rem auto",
-                    maxWidth: "600px",
-                    border: "1px solid #ddd",
-                    borderRadius: "8px",
-                    padding: "1rem",
-                }}
-            >
+            <section className={styles.formSection}>
                 <h3>Tambah Data Rumah</h3>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <div className={styles.form}>
                     <input
                         placeholder="Nama Rumah"
                         value={form.nama}
@@ -143,38 +131,18 @@ export default function SPKPage() {
                         <option value="1">Buruk</option>
                     </select>
 
-                    <button
-                        onClick={handleAdd}
-                        style={{
-                            marginTop: "0.5rem",
-                            padding: "0.5rem 1rem",
-                            background: "#2563eb",
-                            color: "white",
-                            border: "none",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                        }}
-                    >
+                    <button onClick={handleAdd} className={styles.button}>
                         Tambah Rumah
                     </button>
                 </div>
             </section>
 
-            {/* 📋 Daftar Rumah */}
             {houses.length > 0 && (
-                <section style={{ maxWidth: "700px", margin: "auto" }}>
+                <section className={styles.tableWrapper}>
                     <h3>Daftar Rumah</h3>
-                    <table
-                        border={1}
-                        cellPadding={8}
-                        style={{
-                            borderCollapse: "collapse",
-                            width: "100%",
-                            textAlign: "center",
-                        }}
-                    >
+                    <table border={1} cellPadding={8} className={styles.table}>
                         <thead>
-                            <tr style={{ background: "#f0f0f0" }}>
+                            <tr>
                                 <th>No</th>
                                 <th>Nama Rumah</th>
                                 <th>Harga</th>
@@ -200,14 +168,7 @@ export default function SPKPage() {
                                     <td>
                                         <button
                                             onClick={() => handleDelete(h.id)}
-                                            style={{
-                                                background: "red",
-                                                color: "white",
-                                                border: "none",
-                                                borderRadius: "4px",
-                                                padding: "0.3rem 0.5rem",
-                                                cursor: "pointer",
-                                            }}
+                                            className={styles.actionButton}
                                         >
                                             Hapus
                                         </button>
@@ -217,55 +178,23 @@ export default function SPKPage() {
                         </tbody>
                     </table>
 
-                    {/* Tombol Hitung SAW */}
-                    <div style={{ textAlign: "center", marginTop: "1rem" }}>
-                        <button
-                            onClick={handleCalculate}
-                            style={{
-                                background: "green",
-                                color: "white",
-                                padding: "0.5rem 1.5rem",
-                                border: "none",
-                                borderRadius: "4px",
-                                cursor: "pointer",
-                                marginRight: "1rem",
-                            }}
-                        >
-                            Hitung SAW
+                    <div className={styles.buttons}>
+                        <button onClick={handleCalculate} className={styles.buttonGreen}>
+                            Hitung
                         </button>
-
-                        <button
-                            onClick={handleReset}
-                            style={{
-                                background: "gray",
-                                color: "white",
-                                padding: "0.5rem 1.5rem",
-                                border: "none",
-                                borderRadius: "4px",
-                                cursor: "pointer",
-                            }}
-                        >
-                            Reset Semua
+                        <button onClick={handleReset} className={styles.buttonGray}>
+                            R
                         </button>
                     </div>
                 </section>
             )}
 
-            {/* 🏆 Hasil SAW */}
             {results.length > 0 && (
-                <section style={{ marginTop: "3rem", textAlign: "center" }}>
+                <section className={styles.resultSection}>
                     <h3>Hasil Perhitungan SAW</h3>
-                    <table
-                        border={1}
-                        cellPadding={8}
-                        style={{
-                            borderCollapse: "collapse",
-                            width: "60%",
-                            margin: "1rem auto",
-                        }}
-                    >
+                    <table border={1} cellPadding={8} className={styles.resultTable}>
                         <thead>
-                            <tr style={{ background: "#f0f0f0" }}>
+                            <tr>
                                 <th>Rank</th>
                                 <th>Nama Rumah</th>
                                 <th>Nilai Preferensi</th>
