@@ -213,9 +213,7 @@ export default function SPKPage() {
                         </tbody>
                     </table>
 
-                    <p>
-                        <strong>{results[0].nama}</strong> direkomendasikan sebagai rumah
-                        terbaik berdasarkan harga, luas, jarak, dan lingkungan.
+                    <p>⭐ {results[0].nama} pilihan terbaik ⭐
                     </p>
                 </section>
             )}
